@@ -1,7 +1,5 @@
-all:
+k8s:
   hosts:
-    pxe:
-      ansible_host: 192.168.0.89
     ubuntu01:
       ansible_host: 192.168.0.25
     ubuntu02:
