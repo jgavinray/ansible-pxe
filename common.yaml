@@ -1,3 +1,5 @@
 - hosts: all
   roles:
     - addusers
+    - setprompt
+    - vundle
