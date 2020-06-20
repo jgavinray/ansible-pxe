@@ -1,25 +1,25 @@
 ---
 - name: Create user
   user:
-    name: "{{current_user}}"
-    group: "users"
+    name: "{{item}}"
     groups: "sudo"
     shell: "/bin/bash"
-  with_items: "{{users}}"
+    state: present
+  with_items: "{{ users }}"
 
-- name: Create a users .ssh directory
-  sudo: True
+- name: Create a users ssh directory
   file:
-    path: "/home/{{current_user}}/.ssh"
+    path: "/home/{{item}}/.ssh"
     state: directory
     mode: 0700
-    owner: "{{current_user}}"
+    owner: "{{item}}"
     group: "users"
+  become: True
   with_items: "{{users}}"
 
 - name: Add user public keys from GitHub
   get_url:
-    url: "https://github.com/{{current_user}}.keys"
-    dest: "/home/{{current_user}}/.ssh/authorized_keys"
+    url: "https://github.com/{{item}}.keys"
+    dest: "/home/{{item}}/.ssh/authorized_keys"
     mode: '0600'
   with_items: "{{users}}"
