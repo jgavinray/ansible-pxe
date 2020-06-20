@@ -24,3 +24,12 @@
     dest: "/home/{{item}}/.ssh/authorized_keys"
     mode: '0600'
   with_items: "{{users}}"
+
+- name: Add password less sudo to users
+  lineinfile:
+    path: /etc/sudoers
+    state: present
+    regexp: '^%sudo'
+    line: '%sudo ALL=(ALL) NOPASSWD: ALL'
+    validate: 'visudo -cf %s'
+  become: True
