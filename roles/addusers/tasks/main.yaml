@@ -23,3 +23,56 @@
     dest: "/home/{{item}}/.ssh/authorized_keys"
     mode: '0600'
   with_items: "{{users}}"
+
+- name: Clone dot files
+  git:
+    repo: https://github.com/jgavinray/dotfiles.git
+    dest: "/home/{{item}}/dotfiles"
+    version: 89278a5d9b5db344376c0e8b841d5088ad2f17af
+  with_items: "{{users}}"
+
+- name: Copy .bashrc
+  copy:
+    src: "/home/{{item}}/dotfiles/.bash_profile"
+    dest: "/home/{{item}}/.bashrc"
+    owner: "{{item}}"
+    remote_src: yes
+  with_items: "{{users}}"
+
+- name: Copy .vimrc
+  copy:
+    src: "/home/{{item}}/dotfiles/.vimrc"
+    dest: "/home/{{item}}/.vimrc"
+    owner: "{{item}}"
+    remote_src: yes
+  with_items: "{{users}}"
+
+- name: Copy .ktx
+  copy:
+    src: "/home/{{item}}/dotfiles/.ktx"
+    dest: "/home/{{item}}/.ktx"
+    owner: "{{item}}"
+    remote_src: yes
+  with_items: "{{users}}"
+
+- name: Copy .ktx-completion.sh
+  copy:
+    src: "/home/{{item}}/dotfiles/.ktx-completion.sh"
+    dest: "/home/{{item}}/.ktx-completion.sh"
+    owner: "{{item}}"
+    remote_src: yes
+  with_items: "{{users}}"
+
+- name: Copy .kube-ps1.sh
+  copy:
+    src: "/home/{{item}}/dotfiles/.kube-ps1.sh"
+    dest: "/home/{{item}}/.kube-ps1.sh"
+    owner: "{{item}}"
+    remote_src: yes
+  with_items: "{{users}}"
+
+- name: Remove dotfile clone
+  file:
+    path: "/home/{{item}}/dotfiles"
+    state: absent
+  with_items: "{{users}}"
