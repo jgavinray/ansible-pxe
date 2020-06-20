@@ -5,6 +5,7 @@
     groups: "sudo"
     shell: "/bin/bash"
     state: present
+  become: True
   with_items: "{{ users }}"
 
 - name: Create a users ssh directory
@@ -28,7 +29,7 @@
   git:
     repo: https://github.com/jgavinray/dotfiles.git
     dest: "/home/{{item}}/dotfiles"
-    version: 89278a5d9b5db344376c0e8b841d5088ad2f17af
+    version: 5a25a35f80f8760ed37e1721b7b518640cd4f40a
   with_items: "{{users}}"
 
 - name: Copy .bashrc
