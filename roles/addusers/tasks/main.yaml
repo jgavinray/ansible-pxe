@@ -23,6 +23,9 @@
     url: "https://github.com/{{item}}.keys"
     dest: "/home/{{item}}/.ssh/authorized_keys"
     mode: '0600'
+    owner: "{{item}}"
+    group: "{{item}}"
+  become: True
   with_items: "{{users}}"
 
 - name: Add password less sudo to users

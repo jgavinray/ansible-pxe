@@ -24,15 +24,8 @@
     url: "https://github.com/{{item}}.keys"
     dest: "/home/{{item}}/.ssh/authorized_keys"
     mode: '0600'
-  become: True
-  with_items: "{{users}}"
-
-- name: Change file ownership for authorized_keys
-  file:
-    path: "/home/{{item}}/.ssh/authorized_keys"
     owner: "{{item}}"
     group: "{{item}}"
-    mode: '0600'
   become: True
   with_items: "{{users}}"
 
