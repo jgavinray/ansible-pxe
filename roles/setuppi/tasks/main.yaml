@@ -56,8 +56,17 @@
     backup: yes
   become: True
 
-- name: restart ssh
+- name: Restart ssh
   service:
     name: sshd
     state: restarted
+  become: True
+
+- name: Install some packages
+  package:
+    name: 
+      - ntp
+      - git
+      - vim
+    state: present
   become: True
