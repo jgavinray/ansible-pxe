@@ -1,0 +1,10 @@
+---
+# Because ansible requires sshpass in order to use a username/password the following
+# is required:
+# https://gist.github.com/arunoda/7790979
+# NOTE:  This should be installed and ripped out immediately after its done to prevent
+# security issues.  Might be a good idea to have a local ansible playbook run to install
+# whats needed in the 1st role and then yank that stuff out in the final role.
+- hosts: all
+  roles:
+    - setuppi

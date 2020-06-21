@@ -1,0 +1,70 @@
+---
+
+- name: Create user
+  user:
+    name: "{{item}}"
+    groups: "sudo"
+    shell: "/bin/bash"
+    state: present
+  become: True
+  with_items: "{{ users }}"
+
+- name: Create a users ssh directory
+  file:
+    path: "/home/{{item}}/.ssh"
+    state: directory
+    mode: 0700
+    owner: "{{item}}"
+    group: "users"
+  become: True
+  with_items: "{{users}}"
+
+- name: Add user public keys from GitHub
+  get_url:
+    url: "https://github.com/{{item}}.keys"
+    dest: "/home/{{item}}/.ssh/authorized_keys"
+    mode: '0600'
+  become: True
+  with_items: "{{users}}"
+
+- name: Change file ownership for authorized_keys
+  file:
+    path: "/home/{{item}}/.ssh/authorized_keys"
+    owner: "{{item}}"
+    group: "{{item}}"
+    mode: '0600'
+  become: True
+  with_items: "{{users}}"
+
+- name: Add password less sudo to users
+  lineinfile:
+    path: /etc/sudoers
+    state: present
+    regexp: '^%sudo'
+    line: '%sudo ALL=(ALL) NOPASSWD: ALL'
+    validate: 'visudo -cf %s'
+  become: True
+
+- name: Disable Password Authentication
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: '^PasswordAuthentication'
+    line: "PasswordAuthentication no"
+    state: present
+    backup: yes
+  become: True
+
+- name: Disable Root Login
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: '^PermitRootLogin'
+    line: "PermitRootLogin no"
+    state: present
+    backup: yes
+  become: True
+
+- name: restart ssh
+  service:
+    name: sshd
+    state: restarted
+  become: True
