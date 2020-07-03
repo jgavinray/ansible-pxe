@@ -1,0 +1,35 @@
+- name: Install apache2
+  apt:
+    name: apache2
+    state: present
+  become: true
+
+- name: Install vim
+  apt:
+    name: vim
+    state: present
+  become: true
+
+- name: Install dnsmasq
+  apt:
+    name: dnsmasq
+    state: present
+  become: true
+
+- name: Install pxelinux
+  apt:
+    name: pxelinux
+    state: present
+  become: true
+
+- name: Recursively remove directory
+  file:
+    path: /tftpboot/pxelinux.cfg
+    state: directory
+  become: true
+
+- name: Copy default pxe to directory
+  copy:
+    src: default
+    dest: /tftpboot/pxelinux.cfg/default
+  become: true
