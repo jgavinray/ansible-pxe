@@ -1,0 +1,8 @@
+os_directories:
+  - '/var/www/html/focal/server/'
+
+iso_file:
+  - 'ubuntu-20.04-live-server-amd64.iso'
+
+iso_download_location:
+  - 'https://releases.ubuntu.com/20.04/ubuntu-20.04-live-server-amd64.iso'

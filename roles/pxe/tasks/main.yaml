@@ -22,7 +22,13 @@
     state: present
   become: true
 
-- name: Recursively remove directory
+- name: Setup MOTD
+  copy:
+    src: motd
+    dest: /etc/motd
+  become: true
+
+- name: Create pxelinux directory
   file:
     path: /tftpboot/pxelinux.cfg
     state: directory
@@ -33,3 +39,19 @@
     src: default
     dest: /tftpboot/pxelinux.cfg/default
   become: true
+
+- name: Check that isos and directories exist
+  debug:
+    msg: "{{ item.0 }}{{ item.1 }}"
+  with_together:
+    - "{{ os_directories }}"
+    - "{{ iso_file  }}"
+
+
+#- name: Download iso
+#  command: "mkdir -p {{ item.0 }} && wget {{ item.3 }}"
+#  when: {{ item.0 }}{{ item.1 }} is not exists
+#  with_together:
+#    - {{ os_directories }}
+#    - {{ iso_file  }}
+#    - {{ iso_download_location }}

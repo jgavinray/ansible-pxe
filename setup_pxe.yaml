@@ -1,0 +1,4 @@
+- hosts: pxe
+  roles:
+    - addusers
+    - pxe
