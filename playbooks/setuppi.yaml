@@ -7,4 +7,4 @@
 # whats needed in the 1st role and then yank that stuff out in the final role.
 - hosts: all
   roles:
-    - setuppi
+    - setuppi 
