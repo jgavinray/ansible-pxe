@@ -1,0 +1,8 @@
+k8s:
+  hosts:
+    ubuntu01:
+      ansible_host: 192.168.0.25
+    ubuntu02:
+      ansible_host: 192.168.0.26
+    ubuntu03:
+      ansible_host: 192.168.0.27
