@@ -1,0 +1,3 @@
+---
+- import_playbook: k8s-repository.yaml
+- import_playbook: disable-swap.yaml
