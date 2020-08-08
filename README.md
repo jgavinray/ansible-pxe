@@ -6,11 +6,11 @@ Run this locally so you can set stuff up
 
 Check the `inventory/pis.yaml` file to ensure that all of the pis are on this list.
 ```bash
-$ ansible-playbook -i inventory/pi.yaml setuppi.yaml 
+$ ansible-playbook -i inventory/pis.yaml playbooks/setuppi.yaml 
 ```
 
 
 ### Add user accounts to all machines
 ```bash
-$ ansible-playbook -i inventory/all.yaml user_accounts.yaml 
+$ ansible-playbook -i inventory/all.yaml playbooks/user_accounts.yaml 
 ```
