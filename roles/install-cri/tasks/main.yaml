@@ -1,0 +1,5 @@
+---
+- name: Install docker (until we can put in podman)
+  apt:
+    name: docker.io
+    state: present

@@ -1,0 +1,22 @@
+---
+- name: Install kubelet
+  apt:
+    name: kubelet
+    state: present
+
+- name: Install kubectl
+  apt:
+    name: kubectl
+    state: present
+
+- name: Install kubeadm
+  apt:
+    name: kubeadm
+    state: present
+
+- name: Start kubelet
+  systemd:
+    state: started
+    daemon_reload: yes
+    name: kubelet
+    enabled: yes

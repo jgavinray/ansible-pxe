@@ -1,3 +1,5 @@
 ---
 - import_playbook: k8s-repository.yaml
 - import_playbook: disable-swap.yaml
+- import_playbook: install-cri.yaml
+- import_playbook: kubeadm-prep.yaml

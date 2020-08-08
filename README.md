@@ -1,6 +1,7 @@
 # ansible-personal
 
-Run this locally so you can set stuff up
+Run this locally so you can set stuff up.
+Download and extract https://github.com/dw/mitogen/archive/master.zip into the /opt directory
 
 ### Setup Raspberry Pis
 
