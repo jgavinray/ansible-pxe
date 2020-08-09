@@ -3,3 +3,10 @@
   apt:
     name: docker.io
     state: present
+
+- name: Start docker
+  systemd:
+    state: started
+    daemon_reload: yes
+    name: docker
+    enabled: yes

@@ -1,0 +1,10 @@
+---
+
+- name: Copy cilium.yaml manifests
+  template:
+    src: cilium.yaml
+    dest: /tmp/cilium.yaml
+    force: yes
+
+- name: Create Cilium Deployment
+  shell: kubectl apply -f /tmp/cilium.yaml

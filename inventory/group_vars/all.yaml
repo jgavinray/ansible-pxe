@@ -13,11 +13,6 @@ kubeadm_config_options:
     apiVersion: kubeadm.k8s.io/v1beta1
     kind: ClusterConfiguration
     kubernetesVersion: "{{ kubernetes_version }}"
-    apiServer:
-        certSANs:
-            - "{{ kubernetes_loadbalanced_api_dns }}"
-    controlPlaneEndpoint: "{{ kubernetes_loadbalanced_api_dns }}:6443"
     networking:
         podSubnet: 10.244.0.0/16
-    useHyperKubeImage: true
     clusterName: "{{ kubernetes_cluster_label }}"

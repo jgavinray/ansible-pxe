@@ -4,3 +4,4 @@
 - import_playbook: k8s/install-cri.yaml
 - import_playbook: k8s/kubeadm-prep.yaml
 - import_playbook: k8s/kubeadm-init-master.yaml
+- import_playbook: k8s/install-cilium.yaml

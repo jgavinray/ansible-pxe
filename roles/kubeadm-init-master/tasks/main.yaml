@@ -1,5 +1,5 @@
 ---
-- name: "Create kubeadm init config yaml"
+- name: "Create kubeadm init config yaml "
   copy:
     content: "{{ kubeadm_config_options | to_nice_yaml }}"
     dest: /tmp/kubeadm-config.yaml
@@ -10,20 +10,20 @@
   register: rslt
   ignore_errors: yes
 
-#- name: Store init output
-#  action: copy content="{{ rslt.stdout }}" dest="/etc/kubernetes/kubeadm-init.stdout"
+- name: Store init output
+  action: copy content="{{ rslt.stdout }}" dest="/etc/kubernetes/kubeadm-init.stdout"
 
 - name: Create .kube folder
   file:
-    path: "~{{ ansible_user }}/.kube"
+    path: "~/.kube"
     state: directory
-    owner: "{{ ansible_user }}"
+    owner: "jgavinray"
 
 - name: Copy admin.conf to .kube folder
   copy:
     src: /etc/kubernetes/admin.conf
-    dest: "~{{ ansible_user }}/.kube/config"
-    owner: "{{ ansible_user }}"
+    dest: "~/.kube/config"
+    owner: "jgavinray"
     remote_src: yes
 
 - name: Create .kube folder
