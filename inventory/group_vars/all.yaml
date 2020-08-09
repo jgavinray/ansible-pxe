@@ -2,4 +2,22 @@
 users:
   - jgavinray
 
+kubernetes_version: v1.18.0
 kubeadm_version: 1.18.0
+
+kubernetes_loadbalanced_api_dns: k8s-api01.domain.local
+kubernetes_cluster_label: cluster1-prod
+
+# Kubernetes Kubeadm Cluster Configuration
+kubeadm_config_options:
+    apiVersion: kubeadm.k8s.io/v1beta1
+    kind: ClusterConfiguration
+    kubernetesVersion: "{{ kubernetes_version }}"
+    apiServer:
+        certSANs:
+            - "{{ kubernetes_loadbalanced_api_dns }}"
+    controlPlaneEndpoint: "{{ kubernetes_loadbalanced_api_dns }}:6443"
+    networking:
+        podSubnet: 10.244.0.0/16
+    useHyperKubeImage: true
+    clusterName: "{{ kubernetes_cluster_label }}"
