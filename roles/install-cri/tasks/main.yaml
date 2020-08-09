@@ -1,10 +1,10 @@
 ---
-- name: Install docker (until we can put in podman)
+- name: "Install Docker (1/2)"
   apt:
     name: docker.io
     state: present
 
-- name: Start docker
+- name: "Start and enable Docker (2/2)"
   systemd:
     state: started
     daemon_reload: yes

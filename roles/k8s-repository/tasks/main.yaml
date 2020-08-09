@@ -1,9 +1,10 @@
 ---
-- name: add google apt-key
+- name: "Add Google Cloud apt-key to system (1/2)"
   apt_key:
     url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
     state: present
 
-- apt_repository:
+- name: "Add Kubernetes apt repository to sources (2/2)"
+  apt_repository:
     repo: deb http://apt.kubernetes.io/ kubernetes-xenial main
     state: present

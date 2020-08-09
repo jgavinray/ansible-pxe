@@ -1,45 +1,45 @@
 ---
-- name: "Create kubeadm init config yaml "
+- name: "Create kubeadm init config yaml (1/10)"
   copy:
     content: "{{ kubeadm_config_options | to_nice_yaml }}"
     dest: /tmp/kubeadm-config.yaml
     mode: 0644
 
-- name: Kubeadm init
+- name: "Run kubeadm init with config yaml (2/10)"
   shell: kubeadm init --config=/tmp/kubeadm-config.yaml
   register: rslt
   ignore_errors: yes
 
-- name: Store init output
+- name: "Store init output (3/10)"
   action: copy content="{{ rslt.stdout }}" dest="/etc/kubernetes/kubeadm-init.stdout"
 
-- name: Create .kube folder
+- name: "Create user .kube folder (4/10)"
   file:
     path: "~/.kube"
     state: directory
     owner: "jgavinray"
 
-- name: Copy admin.conf to .kube folder
+- name: "Copy admin.conf to user .kube folder (5/10)"
   copy:
     src: /etc/kubernetes/admin.conf
     dest: "~/.kube/config"
     owner: "jgavinray"
     remote_src: yes
 
-- name: Create .kube folder
+- name: "Create root user .kube folder (6/10)"
   file:
     path: "/root/.kube"
     state: directory
     owner: "root"
 
-- name: Copy admin.conf to .kube folder
+- name: "Copy admin.conf to root user .kube folder (7/10)"
   copy:
     src: /etc/kubernetes/admin.conf
     dest: "/root/.kube/config"
     owner: "root"
     remote_src: yes
 
-- name: "Fetching Kubernetes Master PKI files from primary master"
+- name: "Fetching Kubernetes Master PKI files from primary master (8/10)"
   fetch:
     src: /etc/kubernetes/pki/{{item}}
     dest: /tmp/kubeadm-ha/pki/{{item}}
@@ -52,7 +52,7 @@
     - front-proxy-ca.crt
     - front-proxy-ca.key
 
-- name: "Fetching Kubernetes Master ETCD files from primary master"
+- name: "Fetching Kubernetes Master ETCD files from primary master (9/10)"
   fetch:
     src: /etc/kubernetes/pki/etcd/{{item}}
     dest: /tmp/kubeadm-ha/pki/etcd/{{item}}
@@ -61,7 +61,7 @@
     - ca.crt
     - ca.key
 
-- name: "Fetching Kubernetes Master Admin files from primary master"
+- name: "Fetching Kubernetes Master Admin files from primary master (10/10)"
   fetch:
     src: /etc/kubernetes/{{item}}
     dest: /tmp/kubeadm-ha/{{item}}
