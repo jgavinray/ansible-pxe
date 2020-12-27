@@ -2,8 +2,8 @@
 users:
   - jgavinray
 
-kubernetes_version: v1.18.0
-kubeadm_version: 1.18.0
+kubernetes_version: v1.20.0
+kubeadm_version: 1.20.0
 
 kubernetes_loadbalanced_api_dns: k8s-api01.domain.local
 kubernetes_cluster_label: cluster1-prod
@@ -15,4 +15,5 @@ kubeadm_config_options:
     kubernetesVersion: "{{ kubernetes_version }}"
     networking:
         podSubnet: 10.244.0.0/16
+        serviceSubnet: 10.245.0.0/16
     clusterName: "{{ kubernetes_cluster_label }}"
