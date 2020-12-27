@@ -15,5 +15,4 @@ kubeadm_config_options:
     kubernetesVersion: "{{ kubernetes_version }}"
     networking:
         podSubnet: 10.244.0.0/16
-        serviceSubnet: 10.245.0.0/16
     clusterName: "{{ kubernetes_cluster_label }}"
