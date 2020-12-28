@@ -6,3 +6,4 @@
 - import_playbook: k8s/kubeadm-init-master.yaml
 - import_playbook: k8s/install-cilium.yaml
 - import_playbook: k8s/kubeadm-join-masters.yaml
+- import_playbook: k8s/kubeadm-join-workers.yaml
