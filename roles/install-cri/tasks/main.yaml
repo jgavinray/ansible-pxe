@@ -4,7 +4,12 @@
     name: docker.io
     state: present
 
-- name: "Start and enable Docker (2/2)"
+- name: "Install Docker Daemon Config (2/3)"
+  template:
+    src: daemon.json
+    dest: /etc/docker/daemon.json
+
+- name: "Start and enable Docker (3/3)"
   systemd:
     state: started
     daemon_reload: yes
