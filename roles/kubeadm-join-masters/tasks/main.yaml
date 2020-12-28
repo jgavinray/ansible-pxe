@@ -25,6 +25,3 @@
 
 - name: "Join Master replicas to cluster  (4/4)"
   shell: "{{ kubeadm_join }} --control-plane"
-
-- pause:
-    prompt: "Wait for containers to Pull and install"
