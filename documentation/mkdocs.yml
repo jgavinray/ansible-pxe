@@ -1,3 +1,5 @@
 site_name: Personal Ansible Setup
+#theme:
+#  name: material
 watch:
   - docs/
