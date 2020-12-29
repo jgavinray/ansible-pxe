@@ -1,9 +1,0 @@
----
-k8s-followers:
-  hosts:
-    ubuntu04:
-      ansible_host: 192.168.0.28
-    ubuntu05:
-      ansible_host: 192.168.0.29
-    ubuntu06:
-      ansible_host: 192.168.0.30
