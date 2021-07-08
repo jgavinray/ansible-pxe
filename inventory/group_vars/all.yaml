@@ -2,15 +2,15 @@
 users:
   - jgavinray
 
-kubernetes_version: v1.20.0
-kubeadm_version: 1.20.0
+kubernetes_version: v1.21.0
+kubeadm_version: 1.21.0
 
 kubernetes_loadbalanced_api_dns: k8s-api01.domain.local
 kubernetes_cluster_label: jgavinray.cloud
 
 # Kubernetes Kubeadm Cluster Configuration
 kubeadm_config_options:
-    apiVersion: kubeadm.k8s.io/v1beta1
+    apiVersion: kubeadm.k8s.io/v1beta2
     kind: ClusterConfiguration
     kubernetesVersion: "{{ kubernetes_version }}"
     controlPlaneEndpoint: "192.168.0.25"
