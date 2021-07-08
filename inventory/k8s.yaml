@@ -13,6 +13,10 @@ k8s:
       ansible_host: 192.168.0.29
     ubuntu06:
       ansible_host: 192.168.0.30
+    rook01:
+      ansible_host: 192.168.0.40
+    rook02:
+      ansible_host: 192.168.0.41
 k8s_leaders:
   hosts:
     ubuntu01:
@@ -29,3 +33,7 @@ k8s_followers:
       ansible_host: 192.168.0.29
     ubuntu06:
       ansible_host: 192.168.0.30
+    rook01:
+      ansible_host: 192.168.0.40
+    rook02:
+      ansible_host: 192.168.0.41
